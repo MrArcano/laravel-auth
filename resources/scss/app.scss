@@ -1,5 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
+body{
+    background-color: #53535b ;
+    color: #ccc4c2;
+}
+
 header{
     height: 60px;
 }
@@ -16,6 +21,7 @@ header{
                 a{
                     color: white;
                     text-decoration: none;
+                    text-align: left;
                 }
                 &.active{
                     a{
@@ -27,6 +33,7 @@ header{
     }
 
     .dashboard{
+        padding: 32px;
         width: calc(100% - 250px);
         height: 100%;
         overflow: auto;
