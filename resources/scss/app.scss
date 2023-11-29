@@ -1,18 +1,20 @@
 @import '~bootstrap/scss/bootstrap';
+@import './partials/admin/header';
+@import './partials/admin/pagination';
+@import './partials/admin/project';
 
 body{
-    background-color: #53535b ;
-    color: #ccc4c2;
-}
-
-header{
-    height: 60px;
+    background-color: #16171c ;
+    color: #fff;
 }
 
 .main-wrapper{
     height: calc(100vh - 60px);
 
     aside{
+        background-color: #202125;
+        border-right: 1px solid #646464;
+
         width: 250px;
         height: 100%;
         ul{
@@ -44,6 +46,8 @@ header{
 
 
 .btn-custom{
+    background-color: transparent;
+    border: none;
     &:hover{
         background-color: rgb(220, 100, 60);
     }
@@ -52,3 +56,24 @@ header{
     }
 }
 
+
+
+table{
+    text-align: center;
+    .btn-custom{
+        margin: 0 2px;
+        padding: 0;
+        color: #393b44;
+        &:hover{
+            color: rgb(220, 100, 60);
+            background-color: transparent;
+        }
+    }
+}
+
+main{
+    h1{
+        margin-bottom: 32px;
+    }
+
+}

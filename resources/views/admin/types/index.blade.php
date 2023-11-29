@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="text-center mb-5">Admin Type</h1>
+    <h1 class="text-center mb-3">Admin Type</h1>
     <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-4">
 
             @if(session('error'))
             <div class="alert alert-danger" role="alert">
@@ -20,8 +20,8 @@
             <form action="{{route('admin.type.store')}}" method="POST">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Crea nuova tecnologia" name="name">
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Crea</button>
+                    <input type="text" class="form-control" placeholder="Add new type" name="name">
+                    <button class="btn btn-secondary btn-custom" type="submit" id="button-addon2">Add</button>
                 </div>
             </form>
 
@@ -39,11 +39,11 @@
                             <th scope="row">{{ $type->id }}</th>
                             <td>{{ $type->name }}</td>
                             <td>
-                                <a class="btn btn-warning" href="#"><i class="fa-solid fa-pencil"></i></a>
+                                <a class="btn btn-secondary btn-custom" href="#"><i class="fa-solid fa-pencil"></i></a>
                                 <form class="d-inline-block" action="{{route('admin.type.destroy',$type)}}" method="POST" onsubmit="return confirm('Sicuro di voler cancellare questo campo?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                                    <button class="btn btn-secondary btn-custom" type="submit"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
                             </td>
                         </tr>

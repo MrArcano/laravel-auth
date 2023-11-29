@@ -40,7 +40,7 @@ class TypeController extends Controller
     {
         $exist = Type::where('name', $request->name)->first();
         if ($exist) {
-            return redirect()->route('admin.tecnology.index')->with('error','Categoria già presente!');
+            return redirect()->route('admin.type.index')->with('error','Categoria già presente!');
         }else{
             $new_type = new Type;
             $new_type->name = $request->name;

@@ -16,7 +16,7 @@ class TecnologyController extends Controller
      */
     public function index()
     {
-        $tecnologies = Tecnology::all();
+        $tecnologies = Tecnology::orderBy("id","desc")->paginate(10);
         return view('admin.tecnologies.index', compact('tecnologies'));
     }
 
