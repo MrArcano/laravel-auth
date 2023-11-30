@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TecnologyRequest;
 use App\Models\Tecnology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -36,7 +37,7 @@ class TecnologyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TecnologyRequest $request)
     {
         $exist = Tecnology::where('name', $request->name)->first();
         if ($exist) {
@@ -79,7 +80,7 @@ class TecnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TecnologyRequest $request, Tecnology $tecnology)
     {
         //
     }

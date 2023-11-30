@@ -27,7 +27,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $title = 'Admin Project - Create';
+        $method = 'POST';
+        $project = null;
+        $route = route('admin.project.store');
+        return view('admin.projects.create_edit', compact('project','route','method','title'));
     }
 
     /**
@@ -38,18 +42,9 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request)
     {
-        dump($request->all());
         $form_data = $request->all();
         $project = new Project();
-
-        if(array_key_exists('is_group_project', $form_data)){
-            $form_data['is_group_project'] = 1;
-        }else{
-            $form_data['is_group_project'] = 0;
-        }
-
         $form_data['slug'] = Project::generateSlug($form_data['name']);
-
         $project->fill($form_data);
         $project->save();
 
@@ -75,7 +70,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $title = 'Admin Project - Edit';
+        $method = 'PUT';
+        $route = route('admin.project.update', $project);
+        return view('admin.projects.create_edit', compact('project','route','method','title'));
     }
 
     /**
