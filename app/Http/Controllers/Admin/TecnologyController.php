@@ -28,7 +28,7 @@ class TecnologyController extends Controller
      */
     public function create()
     {
-        //
+        // sto utilizzando direttamente la pagina index, che rimanda allo store per creare una nuova istanza
     }
 
     /**

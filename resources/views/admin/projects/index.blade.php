@@ -3,6 +3,10 @@
 @section('content')
     <div class="project">
         <h1 class="text-center mb-3">Admin Project</h1>
+
+        {{-- importo gli alert, per quando viene eliminato un progetto --}}
+        @include('admin.partials.alert_success_error')
+
         <p class="add-project"><a href="{{route('admin.project.create')}}"><i class="fa-solid fa-circle-plus"></i></a></p>
         <table class="table table-success table-striped">
             <thead>
@@ -39,12 +43,12 @@
                             <a class="btn btn-secondary btn-custom" href="{{route('admin.project.show',$project)}}"><i class="fa-solid fa-eye"></i></a>
 
                             <a class="btn btn-secondary btn-custom" href="{{route('admin.project.edit',$project)}}"><i class="fa-solid fa-pencil"></i></a>
+                            @include('admin.partials.delete_form',
+                                [
+                                    'route' => 'admin.project.destroy',
+                                    'element' => $project,
+                                    ])
 
-                            <form class="d-inline-block" action="{{ route('admin.project.destroy', $project)}}" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare -> {{ $project->name }} ?')">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-secondary btn-custom" type="submit"><i class="fa-solid fa-trash-can"></i></button>
-                            </form>
                         </td>
                     </tr>
                 @endforeach

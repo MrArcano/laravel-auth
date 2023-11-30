@@ -40,11 +40,11 @@
                             <td>{{ $type->name }}</td>
                             <td>
                                 <a class="btn btn-secondary btn-custom" href="#"><i class="fa-solid fa-pencil"></i></a>
-                                <form class="d-inline-block" action="{{route('admin.type.destroy',$type)}}" method="POST" onsubmit="return confirm('Sicuro di voler cancellare {{ $type->name }}?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-secondary btn-custom" type="submit"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
+                                @include('admin.partials.delete_form',
+                                [
+                                    'route' => 'admin.type.destroy',
+                                    'element' => $type,
+                                    ])
                             </td>
                         </tr>
                     @endforeach
