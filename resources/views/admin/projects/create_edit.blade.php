@@ -4,16 +4,29 @@
     <div class="project-create">
         <h1 class="text-center mb-5">{{$title}}</h1>
 
-        <form action="{{ $route }}" method="POST">
+        <form action="{{ $route }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method($method)
 
-            <div class="mb-3">
-                <label for="name" class="form-label fw-bold">Titolo progetto: *</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name',$project?->name) }}">
-                @error('name')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="name" class="form-label fw-bold">Titolo progetto: *</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name',$project?->name) }}">
+                        @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="image" class="form-label fw-bold">Immagine: </label>
+                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                        @error('image')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
             </div>
 
             <div class="row">

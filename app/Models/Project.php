@@ -17,6 +17,8 @@ class Project extends Model
         "start_date",
         "end_date",
         "status",
-        "is_group_project"
+        "is_group_project",
+        "image",
+        "image_name",
     ] ;
 }
