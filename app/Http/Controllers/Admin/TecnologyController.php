@@ -94,7 +94,6 @@ class TecnologyController extends Controller
         $tecnology->update($form_data);
         return redirect()->route('admin.tecnology.index')->with('success','Modificato correttamente!');
 
-
     }
 
     /**

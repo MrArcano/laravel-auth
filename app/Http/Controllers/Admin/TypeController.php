@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Functions\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TypeRequest;
 use App\Models\Type;
@@ -17,7 +18,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $types = Type::orderBy("id","desc")->paginate(10);
         return view('admin.types.index',compact('types'));
     }
 
@@ -82,7 +83,17 @@ class TypeController extends Controller
      */
     public function update(TypeRequest $request, Type $type)
     {
-        //
+        $form_data = $request->all();
+
+        $exist = Type::where('name', $request->name)->first();
+        if ($exist) {
+            return redirect()->route('admin.type.index')->with('error','Tipo già presente!');
+        }
+
+        $form_data['slug'] = Helper::generateSlug($request->name , Type::class);
+        $type->update($form_data);
+        return redirect()->route('admin.type.index')->with('success','Modificato correttamente!');
+
     }
 
     /**
