@@ -47,7 +47,7 @@ body{
 
 .btn-custom{
     background-color: transparent;
-    border: none;
+    // border: none;
     &:hover{
         background-color: rgb(220, 100, 60);
     }
@@ -61,6 +61,7 @@ body{
 table{
     text-align: center;
     .btn-custom{
+        border: none;
         margin: 0 2px;
         padding: 0;
         color: #393b44;

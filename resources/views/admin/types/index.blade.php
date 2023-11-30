@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="text-center mb-3">Admin Type</h1>
     <div class="row justify-content-center">
-        <div class="col-4">
+        <div class="col-6">
 
             @if(session('error'))
             <div class="alert alert-danger" role="alert">
@@ -40,7 +40,7 @@
                             <td>{{ $type->name }}</td>
                             <td>
                                 <a class="btn btn-secondary btn-custom" href="#"><i class="fa-solid fa-pencil"></i></a>
-                                <form class="d-inline-block" action="{{route('admin.type.destroy',$type)}}" method="POST" onsubmit="return confirm('Sicuro di voler cancellare questo campo?')">
+                                <form class="d-inline-block" action="{{route('admin.type.destroy',$type)}}" method="POST" onsubmit="return confirm('Sicuro di voler cancellare {{ $type->name }}?')">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-secondary btn-custom" type="submit"><i class="fa-solid fa-trash-can"></i></button>

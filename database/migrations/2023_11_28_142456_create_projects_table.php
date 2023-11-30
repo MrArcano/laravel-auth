@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->text('description');
-            $table->string('status',10); /* (in corso, completato, sospeso, etc.) */
+            $table->string('status',10)->nullable()->default('In corso'); /* (in corso, completato, sospeso, etc.) */
             $table->timestamps();
         });
     }

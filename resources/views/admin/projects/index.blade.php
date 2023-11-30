@@ -12,6 +12,7 @@
                     <th scope="col">Data inizio</th>
                     <th scope="col">Data fine</th>
                     <th scope="col">Stato</th>
+                    <th scope="col">Teamwork</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -33,9 +34,12 @@
                         <td>{{date_format($start_date,'d/m/Y')}}</td>
                         <td>{{$end_date ? date_format($end_date,'d/m/Y') : '-'}}</td>
                         <td>{{$project->status}}</td>
+                        <td>{{$project->is_group_project}}</td>
                         <td>
                             <a class="btn btn-secondary btn-custom" href="{{route('admin.project.show',$project)}}"><i class="fa-solid fa-eye"></i></a>
-                            <a class="btn btn-secondary btn-custom" href="#"><i class="fa-solid fa-pencil"></i></a>
+
+                            <a class="btn btn-secondary btn-custom" href="{{route('admin.project.edit',$project)}}"><i class="fa-solid fa-pencil"></i></a>
+
                             <form class="d-inline-block" action="{{ route('admin.project.destroy', $project)}}" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare -> {{ $project->name }} ?')">
                                 @csrf
                                 @method('DELETE')

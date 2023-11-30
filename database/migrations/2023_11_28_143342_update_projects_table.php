@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->boolean('is_group_project')->default(false)->after('description');
+            $table->string('is_group_project',2)->nullable()->default('No')->after('description');
         });
     }
 
