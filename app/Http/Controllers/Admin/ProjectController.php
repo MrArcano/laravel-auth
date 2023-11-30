@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Functions\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProjectRequest;
 use App\Models\Project;
@@ -44,7 +45,8 @@ class ProjectController extends Controller
     {
         $form_data = $request->all();
         $project = new Project();
-        $form_data['slug'] = Project::generateSlug($form_data['name']);
+        // $form_data['slug'] = Project::generateSlug($form_data['name']);
+        $form_data['slug'] = Helper::generateSlug($form_data['name'] , Project::class);
         $project->fill($form_data);
         $project->save();
 
@@ -89,7 +91,7 @@ class ProjectController extends Controller
         if($project->name === $form_data['name']){
             $form_data['slug'] = $project->slug;
         }else{
-            $form_data['slug'] = Project::generateSlug($form_data['name']);
+            $form_data['slug'] = Helper::generateSlug($form_data['name'] , Project::class);
         }
         $project->update($form_data);
 
