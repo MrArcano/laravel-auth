@@ -101,8 +101,20 @@ class ProjectController extends Controller
         }else{
             $form_data['slug'] = Helper::generateSlug($form_data['name'] , Project::class);
         }
-        $project->update($form_data);
 
+        // controllo che nei miei dati ricevuti dal form sia stata aggiunta un'immagine
+        if(array_key_exists('image', $form_data)){
+            if($project->image){
+                // cancello la vecchia immmagine se esiste
+                Storage::delete($project->image);
+            }
+            // inserisco la nuova immagine
+            $form_data['image_name'] = $request->file('image')->getClientOriginalName();
+            $img_path = Storage::put('uploads', $form_data['image']);
+            $form_data['image'] = $img_path;
+        }
+
+        $project->update($form_data);
         return redirect()->route('admin.project.show', $project)->with('success','Modificato con successo!');
     }
 
@@ -114,6 +126,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->image){
+            // cancello la vecchia immmagine se esiste
+            Storage::delete($project->image);
+        }
         $project->delete();
         return redirect()->route('admin.project.index')->with('success','Progetto cancellato definitivamente!');
     }

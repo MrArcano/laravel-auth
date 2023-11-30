@@ -18,7 +18,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <div class="mb-3">
                         <label for="image" class="form-label fw-bold">Immagine: </label>
                         <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
@@ -27,6 +27,11 @@
                         @enderror
                     </div>
                 </div>
+                @if($project)
+                    <div class="col-1">
+                        <img class="img-fluid" src="{{ asset('storage/'. $project->image ) }}" alt="{{ $project->image_name }}">
+                    </div>
+                @endif
             </div>
 
             <div class="row">
