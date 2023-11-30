@@ -15,7 +15,7 @@
         <form action="{{route('admin.'.$route.'.store')}}" method="POST">
             @csrf
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Add new tecnology" name="name">
+                <input type="text" class="form-control" placeholder="Add new {{ $route }}" name="name">
                 <button class="btn btn-secondary btn-custom" type="submit" id="button-addon2">Add</button>
             </div>
         </form>
@@ -47,7 +47,7 @@
                             <button onclick="edit_submit()" class="btn btn-secondary btn-custom"><i class="fa-solid fa-pencil"></i></button>
                             @include('admin.partials.delete_form',
                             [
-                                'route' => 'admin.tecnology.destroy',
+                                'route' => 'admin.'.$route.'.destroy',
                                 'element' => $item,
                                 ])
                         </td>
