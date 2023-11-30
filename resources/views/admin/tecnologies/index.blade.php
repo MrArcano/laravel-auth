@@ -5,7 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-6">
 
+            {{-- Alert with session --}}
             @include('admin.partials.alert_success_error')
+
+            {{-- Alert validation --}}
+            @error('name')
+                <div class="alert alert-danger" role="alert">
+                    <p>{{ $message }}</p>
+                </div>
+            @enderror
 
             <form action="{{route('admin.tecnology.store')}}" method="POST">
                 @csrf
@@ -31,9 +39,15 @@
                     @foreach ($tecnologies as $tecnology)
                         <tr>
                             <th scope="row">{{ $tecnology->id }}</th>
-                            <td>{{ $tecnology->name }}</td>
                             <td>
-                                <a class="btn btn-secondary btn-custom" href="#"><i class="fa-solid fa-pencil"></i></a>
+                                <form id="edit-form" method="POST" action="{{ route('admin.tecnology.update' , $tecnology) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input class="form-hidden" type="text" name="name" value="{{ $tecnology->name }}">
+                                </form>
+                            </td>
+                            <td>
+                                <button onclick="edit_submit()" class="btn btn-secondary btn-custom"><i class="fa-solid fa-pencil"></i></button>
                                 @include('admin.partials.delete_form',
                                 [
                                     'route' => 'admin.tecnology.destroy',
@@ -47,4 +61,11 @@
 
         </div>
     </div>
+
+    <script>
+        function edit_submit(){
+            const edit_form = document.getElementById("edit-form");
+            edit_form.submit();
+        }
+    </script>
 @endsection

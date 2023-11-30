@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Functions\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TecnologyRequest;
 use App\Models\Tecnology;
@@ -41,13 +42,13 @@ class TecnologyController extends Controller
     {
         $exist = Tecnology::where('name', $request->name)->first();
         if ($exist) {
-            return redirect()->route('admin.tecnology.index')->with('error','Categoria già presente!');
+            return redirect()->route('admin.tecnology.index')->with('error','Tecnologia già presente!');
         }else{
             $new_tecnologies = new Tecnology;
             $new_tecnologies->name = $request->name;
             $new_tecnologies->slug = Str::slug($request->name, '-');
             $new_tecnologies->save();
-            return redirect()->route('admin.tecnology.index')->with('success','Categoria aggiunta con successo!');
+            return redirect()->route('admin.tecnology.index')->with('success','Tecnologia aggiunta con successo!');
         }
     }
 
@@ -82,7 +83,18 @@ class TecnologyController extends Controller
      */
     public function update(TecnologyRequest $request, Tecnology $tecnology)
     {
-        //
+        $form_data = $request->all();
+
+        $exist = Tecnology::where('name', $request->name)->first();
+        if ($exist) {
+            return redirect()->route('admin.tecnology.index')->with('error','Tecnologia già presente!');
+        }
+
+        $form_data['slug'] = Helper::generateSlug($request->name , Tecnology::class);
+        $tecnology->update($form_data);
+        return redirect()->route('admin.tecnology.index')->with('success','Modificato correttamente!');
+
+
     }
 
     /**
@@ -94,6 +106,6 @@ class TecnologyController extends Controller
     public function destroy(Tecnology $tecnology)
     {
         $tecnology->delete();
-        return redirect()->route('admin.tecnology.index')->with('success','Cancellato con successo !');
+        return redirect()->route('admin.tecnology.index')->with('success','Cancellato con successo!');
     }
 }

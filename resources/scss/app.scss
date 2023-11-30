@@ -76,5 +76,19 @@ main{
     h1{
         margin-bottom: 32px;
     }
+}
 
+.alert{
+    padding: 8px;
+    p{
+        margin: 0;
+    }
+}
+
+.form-hidden{
+    background-color: transparent;
+    border: none;
+    &:focus{
+        outline: none;
+    }
 }
