@@ -37,14 +37,14 @@
                     <tr>
                         <th scope="row">{{ $item->id }}</th>
                         <td>
-                            <form id="edit-form" method="POST" action="{{ route('admin.'.$route.'.update' , $item) }}">
+                            <form id="edit-form-{{$item->id}}" method="POST" action="{{ route('admin.'.$route.'.update' , $item) }}">
                                 @csrf
                                 @method('PUT')
                                 <input class="form-hidden" type="text" name="name" value="{{ $item->name }}">
                             </form>
                         </td>
                         <td>
-                            <button onclick="edit_submit()" class="btn btn-secondary btn-custom"><i class="fa-solid fa-pencil"></i></button>
+                            <button onclick="edit_submit({{ $item->id }})" class="btn btn-secondary btn-custom"><i class="fa-solid fa-pencil"></i></button>
                             @include('admin.partials.delete_form',
                             [
                                 'route' => 'admin.'.$route.'.destroy',
@@ -60,8 +60,8 @@
 </div>
 
 <script>
-    function edit_submit(){
-        const edit_form = document.getElementById("edit-form");
+    function edit_submit(id){
+        const edit_form = document.getElementById("edit-form-" + id);
         edit_form.submit();
     }
 </script>
