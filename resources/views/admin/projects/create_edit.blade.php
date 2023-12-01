@@ -27,9 +27,12 @@
                         @enderror
                     </div>
                 </div>
-                @if($project)
-                    <div class="col-1">
+                @if($project?->image)
+                    <div class="col-1 position-relative">
                         <img class="img-fluid" src="{{ asset('storage/'. $project->image ) }}" alt="{{ $project->image_name }}">
+                        <div class=" position-absolute top-0 start-0">
+                            <a href="#"><i class="fa-solid fa-xmark"></i></a>
+                        </div>
                     </div>
                 @endif
             </div>

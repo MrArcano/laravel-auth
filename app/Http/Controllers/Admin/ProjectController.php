@@ -133,4 +133,18 @@ class ProjectController extends Controller
         $project->delete();
         return redirect()->route('admin.project.index')->with('success','Progetto cancellato definitivamente!');
     }
+
+    public function destroy_image(Project $project){
+        if($project->image){
+            // cancello la vecchia immmagine se esiste
+            Storage::delete($project->image);
+        }
+        // resetto i dati nel db
+        $form_data['image_name'] = null;
+        $form_data['image'] = null;
+
+        $project->update($form_data);
+
+        return redirect()->route('admin.project.show', $project)->with('success','Immagine eliminata!');
+    }
 }
