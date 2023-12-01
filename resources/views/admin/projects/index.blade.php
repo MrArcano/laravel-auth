@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+
+
 @section('content')
     <div class="project">
         <h1 class="text-center mb-3">Admin Project</h1>
@@ -17,6 +19,7 @@
                     <th scope="col">Data fine</th>
                     <th scope="col">Stato</th>
                     <th scope="col">Teamwork</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -39,6 +42,7 @@
                         <td>{{$end_date ? date_format($end_date,'d/m/Y') : '-'}}</td>
                         <td>{{$project->status}}</td>
                         <td>{{$project->is_group_project}}</td>
+                        <td>{{$project->type->name ?? '-'}}</td>
                         <td>
                             <a class="btn btn-secondary btn-custom" href="{{route('admin.project.show',$project)}}"><i class="fa-solid fa-eye"></i></a>
 

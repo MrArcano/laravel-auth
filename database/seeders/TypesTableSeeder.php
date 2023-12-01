@@ -16,12 +16,11 @@ class TypesTableSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['Front End', 'Back End'];
+        $types = ['Front End', 'Back End', 'Full Stack'];
         foreach ($types as $type) {
             $new_type = new Type();
             $new_type->name = $type;
             $new_type->slug = Str::slug($type, '-');
-            // dump($new_tecnology);
             $new_type->save();
         }
     }
